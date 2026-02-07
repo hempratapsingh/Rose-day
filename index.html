@@ -5,227 +5,299 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Rose Day Shivani 🌹</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --deep-red: #8b0000;
-  --rose-pink: #e63973;
-  --blush: #ffd1dc;
-  --white: #ffffff;
-  --gold: #d4af37;
+:root{
+  --rose:#e63973;
+  --gold:#e6c068;
+  --pink:#ffb6c1;
+  --dark:#120005;
+  --white:#fff;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+  background: radial-gradient(circle at top, #3b000f, var(--dark));
+  color:var(--white);
+  font-family:'Playfair Display', serif;
+  overflow-x:hidden;
 }
 
-body {
-  font-family: 'Playfair Display', serif;
-  background: linear-gradient(135deg, #2b0000, #8b0000, #e63973);
-  color: var(--white);
-  overflow-x: hidden;
+/* Floating */
+.floating{
+  position:fixed;
+  top:-10%;
+  font-size:22px;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(120vh) rotate(360deg);}
 }
 
-/* Floating Rose Petals */
-.petal {
-  position: fixed;
-  top: -10%;
-  font-size: 20px;
-  animation: fall linear infinite;
-  opacity: 0.8;
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(120vh) rotate(360deg);
+.rose{
+  font-size:160px;
+  animation:pulse 2.5s infinite;
+  cursor:pointer;
+  filter:drop-shadow(0 0 35px rgba(255,0,80,.9));
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+}
+
+.hero h1{
+  font-size:3.2rem;
+  margin-top:20px;
+  color:var(--pink);
+  text-shadow:0 0 25px rgba(255,182,193,.8);
+}
+
+/* CARD */
+.card{
+  width:90%;
+  max-width:900px;
+  margin:50px auto;
+  padding:35px;
+  border-radius:25px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(12px);
+  box-shadow:0 25px 50px rgba(0,0,0,.5);
+  text-align:center;
+  animation:rise 1.6s ease;
+}
+@keyframes rise{
+  from{opacity:0;transform:translateY(50px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.card h2{
+  color:var(--gold);
+  font-size:2.6rem;
+  margin-bottom:20px;
+}
+
+.card p{
+  font-size:1.2rem;
+  line-height:1.9;
+}
+
+/* SECRET + PROPOSAL */
+.secret{
+  display:none;
+  font-family:'Great Vibes', cursive;
+  font-size:2.2rem;
+  color:var(--pink);
+  margin-top:20px;
+}
+
+.proposal{
+  display:none;
+  font-family:'Great Vibes', cursive;
+  font-size:3rem;
+  color:var(--gold);
+  margin-top:25px;
+  animation:heartbeat 2s infinite;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+}
+
+/* YES BUTTON */
+.yes-btn{
+  display:none;
+  margin:30px auto 0;
+  padding:16px 40px;
+  font-size:1.3rem;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  color:white;
+  background:linear-gradient(45deg,var(--rose),var(--gold));
+  box-shadow:0 15px 30px rgba(0,0,0,.6);
+  animation:yesPulse 1.5s infinite;
+}
+@keyframes yesPulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+}
+
+/* FIREWORK */
+.spark{
+  position:fixed;
+  font-size:20px;
+  pointer-events:none;
+  animation:explode 1.4s ease-out forwards;
+}
+@keyframes explode{
+  to{
+    transform:translate(var(--x),var(--y)) scale(0);
+    opacity:0;
   }
 }
 
-/* HERO SECTION */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
+/* FULLSCREEN CELEBRATION */
+.celebrate{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle, rgba(255,182,193,.25), rgba(0,0,0,.9));
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:999;
 }
 
-.rose {
-  font-size: 140px;
-  animation: heartbeat 2s infinite;
-  filter: drop-shadow(0 0 20px rgba(255,0,0,0.6));
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-top: 20px;
-  color: var(--blush);
-  text-shadow: 0 0 15px rgba(255,192,203,0.6);
-}
-
-/* GLASS CARD */
-.card {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 30px;
-  margin: 40px auto;
-  width: 90%;
-  max-width: 800px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  animation: fadeUp 2s ease;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* MAIN MESSAGE */
-.message h2 {
-  font-size: 2.5rem;
-  color: var(--gold);
-  margin-bottom: 20px;
-}
-
-.message p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-}
-
-/* LOVE NOTE */
-.love-note {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2rem;
-  color: var(--blush);
-}
-
-.love-note span {
-  color: var(--gold);
+.celebrate h1{
+  font-family:'Great Vibes', cursive;
+  font-size:4rem;
+  color:var(--gold);
+  text-shadow:0 0 30px rgba(255,215,0,.9);
+  animation:heartbeat 2s infinite;
 }
 
 /* FOOTER */
-.footer {
-  text-align: center;
-  padding: 60px 20px;
-  font-size: 1.5rem;
-  color: var(--blush);
-  animation: fadeIn 3s ease;
+.footer{
+  padding:70px 20px;
+  text-align:center;
+  font-size:1.6rem;
+  color:var(--pink);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* MUSIC BUTTON */
-.music-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: var(--rose-pink);
-  border: none;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 14px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-}
-
-.music-btn:hover {
-  background: var(--gold);
+/* MUSIC */
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:linear-gradient(45deg,var(--rose),var(--gold));
+  border:none;
+  color:white;
+  padding:14px 22px;
+  border-radius:40px;
+  cursor:pointer;
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-  .rose {
-    font-size: 110px;
-  }
+@media(max-width:600px){
+  .rose{font-size:120px;}
+  .hero h1{font-size:2.3rem;}
+  .proposal{font-size:2.4rem;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="rose">🌹</div>
+  <div class="rose" onclick="revealLove(event)">🌹</div>
   <h1>Happy Rose Day, Shivani 🌹</h1>
+  <p style="opacity:.8;">(Tap the rose)</p>
 </section>
 
-<!-- MAIN MESSAGE -->
-<section class="card message">
-  <h2>For My Love ❤️</h2>
+<section class="card">
+  <h2>For My Forever ❤️</h2>
   <p>
     Just like this rose, my love for you blooms more beautifully every single day.<br><br>
     You are my smile, my peace, my forever.<br><br>
     This Rose Day, I give you not just a flower, but my heart.
   </p>
+
+  <div class="secret" id="secretMsg">
+    Shivani, you are my favorite feeling, my safest place,
+    and the most beautiful chapter of my life 🌹❤️
+  </div>
+
+  <div class="proposal" id="proposalMsg">
+    Will you be mine forever? 💍❤️
+  </div>
+
+  <button class="yes-btn" id="yesBtn" onclick="celebrateLove()">YES 💖</button>
 </section>
 
-<!-- LOVE NOTE -->
-<section class="card love-note">
-  My dearest <span>Shivani</span>,<br><br>
-  Every moment with you feels like a beautiful dream I never want to wake up from.
-  Your laughter colors my world, your presence completes my soul.
-  I promise to cherish you, respect you, and love you endlessly —
-  today, tomorrow, and always. 🌹❤️
-</section>
-
-<!-- FOOTER -->
 <div class="footer">
   With endless love, forever yours ❤️
 </div>
 
-<!-- MUSIC -->
+<!-- FULLSCREEN CELEBRATION -->
+<div class="celebrate" id="celebrate">
+  <h1>She said YES 💍❤️</h1>
+</div>
+
 <button class="music-btn" onclick="toggleMusic()">🎵 Love Music</button>
-<audio id="bgMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
 </audio>
 
 <script>
-// Rose petals generator
-function createPetal() {
-  const petal = document.createElement("div");
-  petal.classList.add("petal");
-  petal.innerHTML = "🌹";
-  petal.style.left = Math.random() * 100 + "vw";
-  petal.style.animationDuration = Math.random() * 5 + 5 + "s";
-  document.body.appendChild(petal);
-
-  setTimeout(() => {
-    petal.remove();
-  }, 10000);
+// Floating
+function floating(){
+  const el=document.createElement("div");
+  el.className="floating";
+  el.innerHTML=Math.random()>.5?"🌹":"❤️";
+  el.style.left=Math.random()*100+"vw";
+  el.style.animationDuration=Math.random()*5+6+"s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),12000);
 }
-setInterval(createPetal, 500);
+setInterval(floating,400);
 
-// Music control
-const music = document.getElementById("bgMusic");
-let playing = false;
+// Reveal love
+function revealLove(e){
+  document.getElementById("secretMsg").style.display="block";
+  setTimeout(()=>{
+    document.getElementById("proposalMsg").style.display="block";
+    document.getElementById("yesBtn").style.display="inline-block";
+  },1500);
+  fireworks(e.clientX,e.clientY);
+}
 
-function toggleMusic() {
-  if (!playing) {
-    music.play();
-  } else {
-    music.pause();
+// Firework burst
+function fireworks(x,y){
+  for(let i=0;i<30;i++){
+    const s=document.createElement("div");
+    s.className="spark";
+    s.innerHTML=Math.random()>.5?"🌹":"✨";
+    s.style.left=x+"px";
+    s.style.top=y+"px";
+    s.style.setProperty("--x",(Math.random()*400-200)+"px");
+    s.style.setProperty("--y",(Math.random()*400-200)+"px");
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),1400);
   }
-  playing = !playing;
+}
+
+// YES celebration
+function celebrateLove(){
+  const c=document.getElementById("celebrate");
+  c.style.display="flex";
+  for(let i=0;i<150;i++){
+    setTimeout(()=>fireworks(
+      Math.random()*window.innerWidth,
+      Math.random()*window.innerHeight
+    ), i*20);
+  }
+}
+
+// Music
+const music=document.getElementById("music");
+let play=false;
+function toggleMusic(){
+  play?music.pause():music.play();
+  play=!play;
 }
 </script>
 
